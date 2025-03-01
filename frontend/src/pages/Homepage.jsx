@@ -18,7 +18,9 @@ export const Homepage = () => {
                             <button className="cursor-pointer py-2 px-3">Szukaj</button>
                         </div>
                         {/* USTAWIENIA */}
-                        <Button>X</Button>
+                        <Button>
+                            <i className="bi bi-gear-fill"></i>
+                        </Button>
                     </div>
                 </div>
             </nav>
