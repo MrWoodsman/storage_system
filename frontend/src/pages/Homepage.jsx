@@ -32,6 +32,7 @@ export const Homepage = () => {
                     {/* <Button>Ustawienia</Button> */}
                     <Button>Pudełka</Button>
                     <Button>Przedmioty</Button>
+                    <Button>Przedmioty</Button>
                 </div>
             </div>
         </div>
