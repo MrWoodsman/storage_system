@@ -1,6 +1,14 @@
-# QR Box System
+# Storage System
 
-System do zarządzania przechowywaniem z kodami QR. Backend i frontend w jednym repozytorium – łatwy do pobrania i uruchomienia lokalnie.
+System do zarządzania przechowywaniem z wykorzystaniem kodów QR. Zarządzamy pudełkami oraz przedmiotami które przypisujemy do wybranych pudełek.
+
+Dzięki podziałowi na pudełka i przedmioty możemy wygodnie wyszukiwać konkretnych przedmiotów i zobaczyć w jakich pudełkach się one znajdują bądź zeskanować kod QR który wygenerowaliśmy i zobaczyć co jest w tym konkretnym pudełku.
+
+Cały serwis działa lokalnie jest uruchamiany w konsoli za pomocą polecenia:
+
+```
+   storages start
+```
 
 ## Wymagania
 
