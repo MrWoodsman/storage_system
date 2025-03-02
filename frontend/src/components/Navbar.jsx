@@ -11,7 +11,7 @@ export const Navbar = () => {
                 <h3 className="font-semibold" onClick={() => navigate("/")}>Storage System</h3>
                 <div className="flex gap-2">
                     {/* SEARCH BAR */}
-                    <div className="bg-neutral-100 rounded-lg gap-4 h-12 md:flex hidden">
+                    <div className="bg-neutral-100 border-[1px] border-neutral-200 rounded-lg gap-4 h-12 md:flex hidden">
                         <input
                             type="text"
                             placeholder="książki, dokumenty, ładowarka..."
