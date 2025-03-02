@@ -7,7 +7,7 @@ Dzięki podziałowi na pudełka i przedmioty możemy wygodnie wyszukiwać konkre
 Cały serwis działa lokalnie jest uruchamiany w konsoli za pomocą polecenia:
 
 ```
-   storages start
+storages start
 ```
 
 ## Wymagania

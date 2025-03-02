@@ -1,18 +1,21 @@
 {
-    "name": "qr-box-system",
-    "version": "1.0.0",
-    "bin": {
-      "storages": "./bin/storages.js"
-    },
-    "workspaces": [
-      "backend",
-      "frontend"
-    ],
-    "scripts": {
-      "build-frontend": "cd frontend && npm run build",
-      "start": "node bin/storages.js start"
-    },
-    "dependencies": {
-      "commander": "^11.1.0"
-    }
-  }
+  "name": "storage-system",
+  "version": "1.0.0",
+  "description": "System do zarządzania przechowywaniem z kodami QR",
+  "bin": {
+    "storages": "./bin/storages.js"
+  },
+  "scripts": {
+    "install-all": "npm install --workspaces",
+    "build-frontend": "cd frontend && npm run build",
+    "prepare": "npm run install-all && npm run build-frontend",
+    "start": "node bin/storages.js start"
+  },
+  "workspaces": ["backend", "frontend"],
+  "dependencies": {
+    "commander": "^11.1.0"
+  },
+  "keywords": ["qr-box", "storage", "cli"],
+  "author": "Mikołaj Ćwikła",
+  "license": "MIT"
+}
