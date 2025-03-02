@@ -9,42 +9,57 @@ const rootDir = path.join(__dirname, '..');
 const backendDir = path.join(rootDir, 'backend');
 const frontendDir = path.join(rootDir, 'frontend');
 
+let currentPort = 1000;
+let backendProcess;
+
 program
     .version('1.0.0')
     .command('start')
     .description('Uruchamia usługę przechowywania i akceptuje komendy')
     .action(() => {
         console.log('Uruchamianie usługi Storage System...');
-        let backendProcess = startBackend();
+        backendProcess = startBackend(currentPort);
 
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
-            prompt: '> '
+            prompt: ''
         });
 
         rl.prompt();
 
         rl.on('line', (input) => {
-            const command = input.trim().toLowerCase();
+            const commandParts = input.trim().split(' ');
+            const command = commandParts[0].toLowerCase();
+            const arg = commandParts[1];
 
             switch (command) {
                 case 'reload':
                     console.log('Przebudowuję frontend i restartuję usługę...');
                     rebuildFrontend(() => {
-                        backendProcess.kill('SIGTERM'); // SIGTERM zamiast domyślnego SIGKILL
-                        backendProcess.on('exit', () => {
-                            backendProcess = startBackend();
+                        stopBackend(backendProcess, () => {
+                            backendProcess = startBackend(currentPort);
                         });
                     });
                     break;
                 case 'stop':
                     console.log('Zatrzymuję usługę...');
-                    backendProcess.kill();
-                    rl.close();
+                    stopBackend(backendProcess, () => rl.close());
                     break;
                 case 'help':
-                    console.log('Dostępne komendy:\n - reload\n - stop\n - help');
+                    console.log('Dostępne komendy:\n - reload\n - stop\n - change-port <port>\n - help');
+                    break;
+                case 'change-port':
+                    if (!arg || isNaN(arg)) {
+                        console.log('Podaj poprawny numer portu, np. "change-port 3000"');
+                    } else {
+                        const newPort = parseInt(arg);
+                        console.log(`Zmieniono port na ${newPort}`);
+                        currentPort = newPort;
+                        stopBackend(backendProcess, () => {
+                            backendProcess = startBackend(currentPort);
+                        });
+                    }
                     break;
                 default:
                     console.log('Nieznana komenda. Wpisz "help" po listę.');
@@ -60,18 +75,39 @@ program
 
 program.parse(process.argv);
 
-function startBackend() {
-    const backend = spawn('node', ['index.js'], {
+function startBackend(port) {
+    // console.log('Uruchomiono backend na porcie', port);
+    const backend = spawn('node', ['index.js', port], {
         cwd: backendDir,
         stdio: 'inherit',
     });
+
     backend.on('error', (err) => console.error(`Błąd backendu: ${err}`));
-    backend.on('exit', (code) => console.log(`Backend zakończony z kodem ${code}`));
+    backend.on('exit', (code) => {
+        console.log('Zakończono backend z kodem', code);
+    });
+
     return backend;
 }
 
+function stopBackend(process, callback) {
+    process.kill('SIGTERM'); // Próbujemy SIGTERM
+    process.on('exit', (code) => {
+        console.log('Backend zatrzymany z kodem', code);
+        callback();
+    });
+
+    // Fallback dla Windows, jeśli SIGTERM nie działa
+    setTimeout(() => {
+        if (!process.killed) {
+            console.log('SIGTERM nie zadziałał, wymuszam zatrzymanie...');
+            process.kill(); // Domyślny SIGKILL
+            callback();
+        }
+    }, 1000); // Czekamy 1 sekundę na SIGTERM
+}
+
 function rebuildFrontend(callback) {
-    // Używamy cmd.exe na Windowsie
     const build = spawn('cmd.exe', ['/c', 'npm', 'run', 'build'], {
         cwd: frontendDir,
         stdio: 'ignore',
