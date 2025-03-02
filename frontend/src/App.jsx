@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
 import { Boxespage } from "./pages/Boxespage"; // Poprawiono "Boxespage" na "BoxesPage"
 import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "ItemsPage"
+import { Errorpage } from "./pages/Errorpage";
 
 // Tworzenie routera
 const router = createBrowserRouter([
@@ -10,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
+    errorElement: <Errorpage />
   },
   {
     path: "/boxes",
