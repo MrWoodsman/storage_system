@@ -1,3 +1,5 @@
+import { Button } from "../components/Button"
+
 export const Itemspage = () => {
     return (
         <div className="page page-itemspage flex flex-col items-center h-dvh">

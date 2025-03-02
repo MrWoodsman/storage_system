@@ -9,9 +9,7 @@
       "frontend"
     ],
     "scripts": {
-      "install-all": "npm install",
       "build-frontend": "cd frontend && npm run build",
-      "prepare": "npm run install-all && npm run build-frontend",
       "start": "node bin/storages.js start"
     },
     "dependencies": {
