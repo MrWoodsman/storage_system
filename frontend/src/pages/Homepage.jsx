@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+// COMPONENTS
 import { Button } from "../components/Button"
 
 export const Homepage = () => {
+    const navigate = useNavigate()
+
     return (
         <div className="page page-homepage flex flex-col items-center h-dvh">
             {/* NAVBAR */}
@@ -19,7 +23,7 @@ export const Homepage = () => {
                         </div>
                         <span className="block md:hidden">
                             <Button>
-                                <i class="bi bi-search"></i>
+                                <i className="bi bi-search"></i>
                             </Button>
                         </span>
                         {/* USTAWIENIA */}
@@ -37,8 +41,8 @@ export const Homepage = () => {
                 <h2 className="text-center text-balance">Zarządzaj swoim domowym magazynem i nie tylko</h2>
                 <div className="flex gap-4 flex-wrap justify-center">
                     {/* <Button>Ustawienia</Button> */}
-                    <Button>Pudełka</Button>
-                    <Button>Przedmioty</Button>
+                    <Button clickAction={() => navigate("/boxes")}>Pudełka</Button>
+                    <Button clickAction={() => navigate("/items")}>Przedmioty</Button>
                 </div>
             </div>
         </div>

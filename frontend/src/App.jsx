@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // PAGES
 import { Homepage } from "./pages/Homepage";
-import { Boxespage } from "./pages/BoxesPage"; // Poprawiono "Boxespage" na "BoxesPage"
-import { Itemspage } from "./pages/ItemsPage";   // Poprawiono "Itemspage" na "ItemsPage"
+import { Boxespage } from "./pages/Boxespage"; // Poprawiono "Boxespage" na "BoxesPage"
+import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "ItemsPage"
 
 // Tworzenie routera
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <Homepage />,
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} future={{ v7_startTransition: true, v7_relativeSplatPath: true }} />
     </>
   );
 }

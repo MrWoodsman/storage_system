@@ -19,7 +19,7 @@ export const Itemspage = () => {
                         </div>
                         <span className="block md:hidden">
                             <Button>
-                                <i class="bi bi-search"></i>
+                                <i className="bi bi-search"></i>
                             </Button>
                         </span>
                         {/* USTAWIENIA */}

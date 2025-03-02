@@ -19,6 +19,6 @@ storages start
 
 1. **Pobierz projekt:**
    ```bash
-   npm install -g storage-system
+   npm install storage-system -g
    storages start
    ```
