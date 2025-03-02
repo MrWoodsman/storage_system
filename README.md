@@ -19,8 +19,6 @@ storages start
 
 1. **Pobierz projekt:**
    ```bash
-   <!-- git clone https://github.com/MrWoodsman/storage_system.git -->
    npm install -g storage-system
    storages start
-   <!-- cd storage_system -->
    ```
