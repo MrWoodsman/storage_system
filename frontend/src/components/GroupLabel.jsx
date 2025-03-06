@@ -11,9 +11,9 @@ export const GroupLabel = ({ labelTitle, toDisplayInList }) => {
     return (
         <h2 className="font-semibold text-base md:text-lg flex flex-col gap-2">
             {/* LABEL */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center border-b-[1px] border-neutral-300">
                 {labelTitle}
-                <button onClick={() => setIsFolded(!isFolded)} className="bg-neutral-200 w-8 h-8 cursor-pointer flex items-center justify-center">
+                <button onClick={() => setIsFolded(!isFolded)} className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-lg">
                     {isFolded ? <i className="bi bi-caret-up-fill"></i> : <i className="bi bi-caret-down-fill"></i>}
                 </button>
             </div>
