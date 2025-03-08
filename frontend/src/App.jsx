@@ -4,6 +4,7 @@ import { Homepage } from "./pages/Homepage";
 import { Boxespage } from "./pages/Boxespage"; // Poprawiono "Boxespage" na "BoxesPage"
 import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "ItemsPage"
 import { Errorpage } from "./pages/Errorpage";
+import { Settingspage } from "./pages/Settingspage";
 
 // Tworzenie routera
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/items",
     element: <Itemspage />,
+  },
+  {
+    path: "/settings",
+    element: <Settingspage />,
   },
 ]);
 
