@@ -18,6 +18,10 @@ export const Boxespage = () => {
                 </GroupLabel>
                 <GroupLabel labelTitle={"Pokój #2"} toDisplayInList={[{ name: "Duże pudełko" }, { name: "Duże pudełko" }]}>
                 </GroupLabel>
+                <GroupLabel labelTitle={"Pokój #2"} toDisplayInList={[]}>
+                </GroupLabel>
+                <GroupLabel labelTitle={"Pokój #2"}>
+                </GroupLabel>
             </div>
         </div>
     )

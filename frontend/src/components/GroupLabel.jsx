@@ -22,13 +22,13 @@ export const GroupLabel = ({ labelTitle, toDisplayInList }) => {
                 !isFolded && (
                     <div className="flex flex-col gap-2">
                         {
-                            toDisplayInList.map((item, index) => (
-                                item ? (
+                            toDisplayInList && toDisplayInList.length > 0 ? (
+                                toDisplayInList.map((item, index) => (
                                     <ListItem key={index} name={item.name ?? "Brak nazwy"} />
-                                ) : (
-                                    <ListItem key={index} name={"Jakoś tu pusto!"} centerText disabled />
-                                )
-                            ))
+                                ))
+                            ) : (
+                                <ListItem name={"Jakoś tu pusto!"} centerText disabled />
+                            )
                         }
                     </div>
                 )
@@ -41,7 +41,7 @@ const ListItem = ({ name, centerText, disabled }) => {
     const statusClass = disabled ? "bg-neutral-100/50 border-neutral-200/50 text-black/50" : "bg-neutral-100 border-neutral-200"
 
     return (
-        <div className={`${statusClass} border-[1px] rounded-lg p-4 text-base font-normal  ${centerText && "text-center"}`}>
+        <div className={`${statusClass} cursor-pointer border-[1px] rounded-lg p-4 text-base font-normal  ${centerText && "text-center"}`}>
             {name}
         </div>
     )
