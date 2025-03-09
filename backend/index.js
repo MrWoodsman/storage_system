@@ -5,7 +5,8 @@ const app = express();
 
 const apiRoutes = require('./routes/api')
 
-const port = process.argv[2] || 1000;
+require('dotenv').config({ path: '../.env' }); // Wczytaj z głównego folderu
+const PORT = process.env.VITE_API_PORT || 1000;
 
 app.use(cors());
 app.use(express.json());
@@ -21,8 +22,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
-const server = app.listen(port, '0.0.0.0', () => {
-    console.log(`Usługa działa na porcie ${port}`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Usługa działa na porcie ${PORT}`);
 });
 
 // Debugowanie SIGTERM

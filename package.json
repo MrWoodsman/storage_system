@@ -11,11 +11,19 @@
     "prepare": "npm run build-frontend",
     "start": "node bin/storages.js start"
   },
-  "workspaces": ["backend", "frontend"],
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "dependencies": {
-    "commander": "^11.1.0"
+    "commander": "^11.1.0",
+    "dotenv": "^16.4.7"
   },
-  "keywords": ["qr-box", "storage", "cli"],
+  "keywords": [
+    "qr-box",
+    "storage",
+    "cli"
+  ],
   "author": "Mikołaj Ćwikła",
   "license": "MIT"
 }

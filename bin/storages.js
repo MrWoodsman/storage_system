@@ -4,12 +4,18 @@ const { program } = require('commander');
 const { spawn } = require('child_process');
 const readline = require('readline');
 const path = require('path');
+const fs = require('fs');
+const dotenv = require('dotenv');
 
+// Ścieżki
 const rootDir = path.join(__dirname, '..');
 const backendDir = path.join(rootDir, 'backend');
 const frontendDir = path.join(rootDir, 'frontend');
+const envPath = path.join(rootDir, '.env');
 
-let currentPort = 1000;
+// Wczytaj zmienne z .env
+dotenv.config({ path: envPath });
+
 let backendProcess;
 
 program
@@ -18,7 +24,8 @@ program
     .description('Uruchamia usługę przechowywania i akceptuje komendy')
     .action(() => {
         console.log('Uruchamianie usługi Storage System...');
-        backendProcess = startBackend(currentPort);
+        const port = process.env.VITE_API_PORT || 1000; // Domyślny port z .env
+        backendProcess = startBackend(port);
 
         const rl = readline.createInterface({
             input: process.stdin,
@@ -38,7 +45,7 @@ program
                     console.log('Przebudowuję frontend i restartuję usługę...');
                     rebuildFrontend(() => {
                         stopBackend(backendProcess, () => {
-                            backendProcess = startBackend(currentPort);
+                            backendProcess = startBackend(process.env.VITE_API_PORT || 1000);
                         });
                     });
                     break;
@@ -54,10 +61,11 @@ program
                         console.log('Podaj poprawny numer portu, np. "change-port 3000"');
                     } else {
                         const newPort = parseInt(arg);
-                        console.log(`Zmieniono port na ${newPort}`);
-                        currentPort = newPort;
-                        stopBackend(backendProcess, () => {
-                            backendProcess = startBackend(currentPort);
+                        updateEnvPort(newPort, () => {
+                            console.log(`Zmieniono port na ${newPort}. Restartuję backend...`);
+                            stopBackend(backendProcess, () => {
+                                backendProcess = startBackend(newPort);
+                            });
                         });
                     }
                     break;
@@ -76,10 +84,11 @@ program
 program.parse(process.argv);
 
 function startBackend(port) {
-    // console.log('Uruchomiono backend na porcie', port);
+    console.log('Uruchomiono backend na porcie', port);
     const backend = spawn('node', ['index.js', port], {
         cwd: backendDir,
         stdio: 'inherit',
+        env: { ...process.env, VITE_API_PORT: port } // Przekazujemy port w env
     });
 
     backend.on('error', (err) => console.error(`Błąd backendu: ${err}`));
@@ -91,26 +100,25 @@ function startBackend(port) {
 }
 
 function stopBackend(process, callback) {
-    process.kill('SIGTERM'); // Próbujemy SIGTERM
+    process.kill('SIGTERM');
     process.on('exit', (code) => {
         console.log('Backend zatrzymany z kodem', code);
         callback();
     });
 
-    // Fallback dla Windows, jeśli SIGTERM nie działa
     setTimeout(() => {
         if (!process.killed) {
             console.log('SIGTERM nie zadziałał, wymuszam zatrzymanie...');
-            process.kill(); // Domyślny SIGKILL
+            process.kill();
             callback();
         }
-    }, 1000); // Czekamy 1 sekundę na SIGTERM
+    }, 1000);
 }
 
 function rebuildFrontend(callback) {
     const build = spawn('cmd.exe', ['/c', 'npm', 'run', 'build'], {
         cwd: frontendDir,
-        stdio: 'ignore',
+        stdio: 'inherit', // Zmiana z 'ignore' na 'inherit', żeby widzieć output
     });
 
     build.on('close', (code) => {
@@ -121,4 +129,27 @@ function rebuildFrontend(callback) {
             console.error('Błąd podczas budowania frontendu.');
         }
     });
+}
+
+function updateEnvPort(newPort, callback) {
+    let envContent = '';
+
+    try {
+        envContent = fs.readFileSync(envPath, 'utf8');
+    } catch (err) {
+        // Jeśli .env nie istnieje, utworzymy nowy
+        console.log('Tworzę nowy plik .env...');
+    }
+
+    const lines = envContent.split('\n');
+    const portLineIndex = lines.findIndex(line => line.startsWith('VITE_API_PORT='));
+    if (portLineIndex !== -1) {
+        lines[portLineIndex] = `VITE_API_PORT=${newPort}`;
+    } else {
+        lines.push(`VITE_API_PORT=${newPort}`);
+    }
+
+    fs.writeFileSync(envPath, lines.join('\n').trim() + '\n', 'utf8');
+    process.env.VITE_API_PORT = newPort; // Aktualizuj w pamięci
+    callback();
 }
