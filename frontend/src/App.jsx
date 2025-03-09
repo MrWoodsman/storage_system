@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { PATHS } from "./router/paths";
 // PAGES
 import { Homepage } from "./pages/Homepage";
 import { Boxespage } from "./pages/Boxespage"; // Poprawiono "Boxespage" na "BoxesPage"
@@ -10,20 +11,20 @@ import { Settingspage } from "./pages/Settingspage";
 const router = createBrowserRouter([
 
   {
-    path: "/",
+    path: PATHS.HOME,
     element: <Homepage />,
     errorElement: <Errorpage />
   },
   {
-    path: "/boxes",
+    path: PATHS.BOXES,
     element: <Boxespage />,
   },
   {
-    path: "/items",
+    path: PATHS.ITEMS,
     element: <Itemspage />,
   },
   {
-    path: "/settings",
+    path: PATHS.SETTINGS,
     element: <Settingspage />,
   },
 ]);

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { PATHS } from "../router/paths";
 // COMPONENTS
 import { Button } from "../components/Button"
 
@@ -8,7 +9,7 @@ export const Navbar = () => {
     return (
         <nav className="w-full flex flex-col items-center border-b-[1px] border-neutral-200">
             <div className="content max-w-5xl min-h-16 p-4 w-full flex justify-between items-center">
-                <h3 className="font-semibold" onClick={() => navigate("/")}>Storage System</h3>
+                <h3 className="font-semibold" onClick={() => navigate(PATHS.HOME)}>Storage System</h3>
                 <div className="flex gap-2">
                     {/* SEARCH BAR */}
                     <div className="bg-neutral-100 border-[1px] border-neutral-200 rounded-lg gap-4 h-12 md:flex hidden">
@@ -25,7 +26,7 @@ export const Navbar = () => {
                         </Button>
                     </span>
                     {/* USTAWIENIA */}
-                    <Button clickAction={() => navigate('/settings')}>
+                    <Button clickAction={() => navigate(PATHS.SETTINGS)}>
                         <i className="bi bi-gear-fill"></i>
                     </Button>
                 </div>
