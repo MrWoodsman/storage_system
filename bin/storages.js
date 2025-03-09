@@ -83,6 +83,7 @@ program
 
 program.parse(process.argv);
 
+// Start backendu
 function startBackend(port) {
     console.log('Uruchomiono backend na porcie', port);
     const backend = spawn('node', ['index.js', port], {
@@ -99,6 +100,7 @@ function startBackend(port) {
     return backend;
 }
 
+// Zatrzymanie backendu
 function stopBackend(process, callback) {
     process.kill('SIGTERM');
     process.on('exit', (code) => {
@@ -115,6 +117,7 @@ function stopBackend(process, callback) {
     }, 1000);
 }
 
+// Przebudowanie frontendu
 function rebuildFrontend(callback) {
     const build = spawn('cmd.exe', ['/c', 'npm', 'run', 'build'], {
         cwd: frontendDir,
@@ -131,6 +134,7 @@ function rebuildFrontend(callback) {
     });
 }
 
+// Aktualizowanie pliku .env
 function updateEnvPort(newPort, callback) {
     let envContent = '';
 
