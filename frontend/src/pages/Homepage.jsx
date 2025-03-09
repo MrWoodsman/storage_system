@@ -7,6 +7,12 @@ import { Navbar } from "../components/Navbar";
 export const Homepage = () => {
     const navigate = useNavigate()
 
+    // Przykład w komponencie React
+    fetch('/api/boxes')
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+
     return (
         <div className="page page-homepage flex flex-col items-center h-dvh">
             {/* NAVBAR */}
