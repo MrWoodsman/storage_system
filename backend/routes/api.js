@@ -19,4 +19,11 @@ router.get('/items', (req, res) => {
     res.json(database.items)
 })
 
+// Pobieranie danych o wybranym pudełku
+router.get('/boxes/:id', (req, res) => {
+    const boxId = req.params.id; // Pobiera wartość 'id' z URL
+    const box = database.boxes.find((box) => box.id == boxId);
+    res.json(box);
+});
+
 module.exports = router

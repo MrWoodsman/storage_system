@@ -3,6 +3,7 @@ export const PATHS = {
     BOXES: '/boxes',
     ITEMS: '/items',
     SETTINGS: '/settings',
+    BOX_PAGE: '/box/:id',
 };
 
 // Nie potrzebne

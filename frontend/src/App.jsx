@@ -6,6 +6,7 @@ import { Boxespage } from "./pages/Boxespage"; // Poprawiono "Boxespage" na "Box
 import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "ItemsPage"
 import { Errorpage } from "./pages/Errorpage";
 import { Settingspage } from "./pages/Settingspage";
+import { OneBoxPage } from "./pages/OneBoxPage";
 
 // Tworzenie routera
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: PATHS.SETTINGS,
     element: <Settingspage />,
+  },
+  {
+    path: PATHS.BOX_PAGE,
+    element: <OneBoxPage />,
   },
 ]);
 
