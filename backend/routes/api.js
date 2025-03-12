@@ -9,8 +9,14 @@ router.get('/boxes', (req, res) => {
     res.json(database.boxes)
 })
 
+// Pobieranie wszystkich lokacji
 router.get('/locations', (req, res) => {
     res.json(database.locations)
+})
+
+// Pobieranie wszystkich przedmiotów
+router.get('/items', (req, res) => {
+    res.json(database.items)
 })
 
 module.exports = router
