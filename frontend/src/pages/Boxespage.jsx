@@ -45,7 +45,7 @@ export const Boxespage = () => {
                 <GroupLabel labelTitle={"Nie przypisane"} toDisplayInList={boxesData.filter((box) => !box.locationId)} />
                 {
                     locationsData.map((location, index) => (
-                        <GroupLabel key={index} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
+                        <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
                     ))
                 }
             </div>

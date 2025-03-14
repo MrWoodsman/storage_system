@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const GroupLabel = ({ labelTitle, toDisplayInList }) => {
     const [isFolded, setIsFolded] = useState(false)
@@ -17,7 +17,7 @@ export const GroupLabel = ({ labelTitle, toDisplayInList }) => {
             >
                 {labelTitle}
 
-                <button className="w-8 h-8 flex items-center justify-center rounded-lg">
+                <button className="w-8 h-8 flex items-center justify-center rounded-lg cursor-pointer">
                     {isFolded ? <i className="bi bi-caret-up-fill"></i> : <i className="bi bi-caret-down-fill"></i>}
                 </button>
             </div>

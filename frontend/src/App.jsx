@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { PATHS } from "./router/paths";
 // PAGES
 import { Homepage } from "./pages/Homepage";
@@ -7,31 +7,27 @@ import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "I
 import { Errorpage } from "./pages/Errorpage";
 import { Settingspage } from "./pages/Settingspage";
 import { OneBoxPage } from "./pages/OneBoxPage";
+import { PopupNewBox } from "./components/popups/PopupNewBox";
 
 // Tworzenie routera
 const router = createBrowserRouter([
-
   {
-    path: PATHS.HOME,
-    element: <Homepage />,
+    path: "/",
+    element: (
+      <>
+        <PopupNewBox />
+        <Outlet />
+      </>
+    ),
+    children: [
+      { path: PATHS.HOME, element: <Homepage /> },
+      { path: PATHS.BOXES, element: <Boxespage /> },
+      { path: PATHS.ITEMS, element: <Itemspage /> },
+      { path: PATHS.SETTINGS, element: <Settingspage /> },
+      { path: PATHS.BOX_PAGE, element: <OneBoxPage /> }
+    ],
     errorElement: <Errorpage />
-  },
-  {
-    path: PATHS.BOXES,
-    element: <Boxespage />,
-  },
-  {
-    path: PATHS.ITEMS,
-    element: <Itemspage />,
-  },
-  {
-    path: PATHS.SETTINGS,
-    element: <Settingspage />,
-  },
-  {
-    path: PATHS.BOX_PAGE,
-    element: <OneBoxPage />,
-  },
+  }
 ]);
 
 function App() {
