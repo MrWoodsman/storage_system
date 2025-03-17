@@ -5,7 +5,7 @@ export const InputComponent = ({ InputLabel, Placeholder, disabled, value }) => 
                 className={`px-2 select-none text-base font-medium ${disabled ? "text-neutral-500" : "text-neutral-950"}`}
                 htmlFor=""
             >{InputLabel ?? "Brak nazwy"}</label>
-            <div className={`flex border-[1px] border-neutral-400 rounded-lg ${disabled && "bg-neutral-200"}`}>
+            <div className={`flex border-[1px] border-neutral-400 rounded-lg ${disabled ? "bg-neutral-100" : ""}`}>
                 <input
                     placeholder={Placeholder}
                     disabled={disabled}

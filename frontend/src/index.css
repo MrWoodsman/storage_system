@@ -12,3 +12,16 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+:root,
+#root,
+body {
+	overscroll-behavior: none;
+	overflow: hidden;
+	height: 100dvh;
+	touch-action: none;
+}
+
+#root {
+	background-color: blueviolet;
+}

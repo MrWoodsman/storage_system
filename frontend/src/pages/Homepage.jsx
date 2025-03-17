@@ -9,7 +9,7 @@ export const Homepage = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="page page-homepage flex flex-col items-center h-dvh">
+        <div className="page page-homepage flex flex-col items-center h-vh">
             {/* NAVBAR */}
             <Navbar />
             {/* CONTENT */}
