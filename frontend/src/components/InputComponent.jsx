@@ -1,4 +1,4 @@
-export const InputComponent = ({ InputLabel, Placeholder, disabled, value }) => {
+export const InputComponent = ({ InputLabel, Placeholder, disabled, value, options }) => {
     return (
         <div className="flex flex-col">
             <label
@@ -15,9 +15,13 @@ export const InputComponent = ({ InputLabel, Placeholder, disabled, value }) => 
                     name=""
                     id=""
                 />
-                <button className="h-full aspect-square flex items-center justify-center cursor-pointer">
-                    <i className="bi bi-three-dots"></i>
-                </button>
+                {
+                    options && (
+                        <button className="h-full aspect-square flex items-center justify-center cursor-pointer">
+                            <i className="bi bi-three-dots"></i>
+                        </button>
+                    )
+                }
             </div>
         </div>
     )
