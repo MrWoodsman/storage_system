@@ -1,6 +1,10 @@
 // COMPONENTS
 import { InputComponent } from "../InputComponent"
 
+/*
+Do poprawy działanie modala na safari zle przewija sie przy
+otwartej klawiaturze, w chrome działa dobrze
+*/
 export const PopupNewBox = () => {
     const isMobile = true
 
@@ -8,8 +12,8 @@ export const PopupNewBox = () => {
     const variableClassChildren = isMobile ? "" : "max-w-[450px]"
 
     return (
-        <div className={`${variableClassParent} flex popup overflow-hidden absolute left-0 bottom-0 w-full h-full bg-black/50 backdrop-blur-[2px]`}>
-            <div className={`${variableClassChildren} bottom-0 max-h-[85%] overflow-auto main-element bg-neutral-50 p-4 flex flex-col gap-4`}>
+        <div className={`${variableClassParent} flex max-h-[100dvh] popup overflow-hidden fixed left-0 bottom-0 w-full h-full bg-black/50 backdrop-blur-[2px] z-50`}>
+            <div className={`${variableClassChildren} bottom-0 max-h-[85%] main-element bg-neutral-50 p-4 flex flex-col gap-4`}>
                 <div className="header">
                     <h1 className="font-semibold text-2xl">Dodawanie pudełka</h1>
                     <h2 className="font-normal text-base">Utrórz nowe pudełko uzupełniając informacje o nim.</h2>
@@ -17,11 +21,6 @@ export const PopupNewBox = () => {
                 <div className="input-wrap flex flex-col gap-2">
                     <InputComponent InputLabel={"Nazwa"} />
                     <InputComponent InputLabel={"Id"} disabled value={'6712-6727-9127-1288'} />
-                    <InputComponent InputLabel={"Lokalizacja"} />
-                    <InputComponent InputLabel={"Lokalizacja"} />
-                    <InputComponent InputLabel={"Lokalizacja"} />
-                    <InputComponent InputLabel={"Lokalizacja"} />
-                    <InputComponent InputLabel={"Lokalizacja"} />
                     <InputComponent InputLabel={"Lokalizacja"} />
                     <InputComponent InputLabel={"Lokalizacja"} />
                     <InputComponent InputLabel={"Lokalizacja"} />

@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <>
-        {/* <PopupNewBox /> */}
+        <PopupNewBox />
         <Outlet />
       </>
     ),

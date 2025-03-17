@@ -17,11 +17,5 @@
 #root,
 body {
 	overscroll-behavior: none;
-	overflow: hidden;
 	height: 100dvh;
-	touch-action: none;
-}
-
-#root {
-	background-color: blueviolet;
 }

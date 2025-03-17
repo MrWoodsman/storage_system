@@ -23,7 +23,7 @@ export const Boxespage = () => {
     }, [])
 
     return (
-        <div className="page page-boxespage flex flex-col items-center h-dvh">
+        <div className="page page-boxespage flex flex-col items-center h-full overflow-y-auto">
             {/* NAVBAR */}
             <Navbar />
             {/* CONTENT */}
@@ -44,6 +44,15 @@ export const Boxespage = () => {
                 </GroupLabel> */}
                 <GroupLabel labelTitle={"Nie przypisane"} toDisplayInList={boxesData.filter((box) => !box.locationId)} />
                 {
+                    locationsData.map((location, index) => (
+                        <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
+                    ))
+                }
+                {
+                    locationsData.map((location, index) => (
+                        <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
+                    ))
+                }                {
                     locationsData.map((location, index) => (
                         <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
                     ))
