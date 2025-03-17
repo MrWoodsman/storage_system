@@ -7,7 +7,7 @@ import { Itemspage } from "./pages/Itemspage";   // Poprawiono "Itemspage" na "I
 import { Errorpage } from "./pages/Errorpage";
 import { Settingspage } from "./pages/Settingspage";
 import { OneBoxPage } from "./pages/OneBoxPage";
-import { PopupNewBox } from "./components/popups/PopupNewBox";
+import { MainPopup } from "./components/popups/MainPopup";
 
 // Tworzenie routera
 const router = createBrowserRouter([
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <>
-        <PopupNewBox />
+        <MainPopup />
         <Outlet />
       </>
     ),
