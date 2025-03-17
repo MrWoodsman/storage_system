@@ -1,3 +1,7 @@
+/*
+    Przerobic options poprzez podawanie do wywołania komponentu opcji
+    i wtedy pokaze sie ten przycisk jesli jakieś są
+*/
 export const InputComponent = ({ InputLabel, Placeholder, disabled, value, options }) => {
     return (
         <div className="flex flex-col">

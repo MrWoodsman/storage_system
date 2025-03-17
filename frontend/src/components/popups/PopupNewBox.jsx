@@ -4,6 +4,12 @@ import { InputComponent } from "../InputComponent"
 /*
 Do poprawy działanie modala na safari zle przewija sie przy
 otwartej klawiaturze, w chrome działa dobrze
+
+? Zmienić dodawanie nowych pudełek na całkiem odzielna
+? kartę tak żeby działało to lepiej na wielu przeglądarrkach
+? oraz było bardziej uniwersalne, przez te błędy związane z safari
+? trafia mnie coś 
+? Licznik zmarnowanych godzin prez safari = 2
 */
 export const PopupNewBox = () => {
     const isMobile = true
