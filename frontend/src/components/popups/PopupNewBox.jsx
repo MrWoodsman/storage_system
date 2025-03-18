@@ -1,4 +1,5 @@
 // COMPONENTS
+import { useEffect, useState } from "react"
 import { InputComponent } from "../InputComponent"
 
 /*
@@ -17,6 +18,15 @@ export const PopupNewBox = () => {
     const variableClassParent = isMobile ? "flex-col-reverse" : "flex-row-reverse"
     const variableClassChildren = isMobile ? "" : "max-w-[450px]"
 
+    const [locationsData, setLocationsData] = useState([])
+
+    useEffect(() => {
+        fetch('/api/locations')
+            .then(response => response.json())
+            .then(data => setLocationsData(data))
+            .catch(error => console.error(error));
+    }, [])
+
     return (
         <div className={`${variableClassParent} flex max-h-[100dvh] popup overflow-hidden absolute top-0 w-full h-full bg-black/50 backdrop-blur-[2px] z-50`}>
             <div className={`${variableClassChildren} bottom-0 max-h-[85%] main-element bg-neutral-50 p-4 flex flex-col gap-4`}>
@@ -27,7 +37,7 @@ export const PopupNewBox = () => {
                 <div className="input-wrap flex flex-col gap-2">
                     <InputComponent InputLabel={"Nazwa"} />
                     <InputComponent InputLabel={"Id"} disabled value={'6712-6727-9127-1288'} />
-                    <InputComponent InputLabel={"Lokalizacja"} options />
+                    <InputComponent InputLabel={"Lokalizacja"} options={locationsData} />
                 </div>
                 <div className="qr-code-wrap flex justify-center">
                     {/* <img className="max-w-[300px]" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="" /> */}

@@ -19,3 +19,19 @@ body {
 	overscroll-behavior: none;
 	height: 100dvh;
 }
+
+.custom-select {
+	position: relative;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.custom-select::after {
+	content: '▼'; /* Symbol strzałki */
+	position: absolute;
+	right: 10px; /* Odstęp od krawędzi */
+	top: 0%;
+	transform: translateY(0%);
+	pointer-events: none; /* Kliknięcia przechodzą na select */
+}
