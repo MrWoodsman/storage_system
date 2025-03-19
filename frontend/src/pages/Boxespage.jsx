@@ -34,25 +34,8 @@ export const Boxespage = () => {
                     </h1>
                     <Button small>Dodaj pudełko</Button>
                 </div>
-                {/* <GroupLabel labelTitle={"Wszystkie"} toDisplayInList={[{ name: "Duże pudełko" }, { name: "Szafa" }, { name: "Regał" }]}>
-                </GroupLabel>
-                <GroupLabel labelTitle={"Pokój #2"} toDisplayInList={[{ name: "Duże pudełko" }, { name: "Duże pudełko" }]}>
-                </GroupLabel>
-                <GroupLabel labelTitle={"Pokój #2"} toDisplayInList={[]}>
-                </GroupLabel>
-                <GroupLabel labelTitle={"Pokój #2"}>
-                </GroupLabel> */}
                 <GroupLabel labelTitle={"Nie przypisane"} toDisplayInList={boxesData.filter((box) => !box.locationId)} />
                 {
-                    locationsData.map((location, index) => (
-                        <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
-                    ))
-                }
-                {
-                    locationsData.map((location, index) => (
-                        <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
-                    ))
-                }                {
                     locationsData.map((location, index) => (
                         <GroupLabel key={`box_${index}`} labelTitle={location.name} toDisplayInList={boxesData.filter((box) => box.locationId == location.id)} />
                     ))

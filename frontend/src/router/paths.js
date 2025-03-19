@@ -4,6 +4,7 @@ export const PATHS = {
     ITEMS: '/items',
     SETTINGS: '/settings',
     BOX_PAGE: '/box/:id',
+    ADD_BOX: '/box/add'
 };
 
 // Nie potrzebne

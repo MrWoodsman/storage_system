@@ -39,7 +39,7 @@ export const PopupNewBox = () => {
                     <InputComponent InputLabel={"Id"} disabled value={'6712-6727-9127-1288'} />
                     <InputComponent InputLabel={"Lokalizacja"} options={locationsData} />
                 </div>
-                <div className="qr-code-wrap flex justify-center">
+                <div className="qr-code-wrap flex justify-center printable">
                     <img className="max-w-[300px]" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="" />
                 </div>
             </div>

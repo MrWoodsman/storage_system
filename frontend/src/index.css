@@ -35,3 +35,18 @@ body {
 	transform: translateY(0%);
 	pointer-events: none; /* Kliknięcia przechodzą na select */
 }
+
+@media print {
+	body * {
+		visibility: hidden;
+	}
+	.printable,
+	.printable * {
+		visibility: visible; /* Pokazuje tylko elementy z klasą printable */
+	}
+	.printable {
+		position: static; /* Zachowuje naturalną kolejność */
+		display: block; /* Ustawia elementy jeden pod drugim */
+		margin: 10px 0; /* Odstęp między elementami */
+	}
+}
