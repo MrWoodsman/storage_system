@@ -1,5 +1,6 @@
 // COMPONENTS
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { GroupLabel } from "../components/GroupLabel"
 import { Navbar } from "../components/Navbar"
 // ASSETS
@@ -7,6 +8,8 @@ import package_emote from "@/assets/emojis/package_emote.png"
 import { Button } from "../components/Button"
 
 export const Boxespage = () => {
+    const navigate = useNavigate()
+
     const [locationsData, setLocationsData] = useState([])
     const [boxesData, setBoxesData] = useState([])
 
@@ -32,7 +35,7 @@ export const Boxespage = () => {
                     <h1 className="font-semibold text-lg md:text-xl inline-flex items-center gap-1">
                         <img src={package_emote} className="h-4 w-4 md:h-5 md:w-5" alt="" />Pudełka
                     </h1>
-                    <Button small>Dodaj pudełko</Button>
+                    <Button small clickAction={() => navigate('/box/add')}>Dodaj pudełko</Button>
                 </div>
                 <GroupLabel labelTitle={"Nie przypisane"} toDisplayInList={boxesData.filter((box) => !box.locationId)} />
                 {
