@@ -1,7 +1,7 @@
 // COMPONENTS
 import { Navbar } from "../components/Navbar"
 import { InputComponent } from "../components/InputComponent"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 // QRCode
 import QRCode from "qrcode";
